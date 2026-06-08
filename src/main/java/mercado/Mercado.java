@@ -24,18 +24,33 @@ public class Mercado {
      * Use totalCarrito como guía de recorrido.
      */
     public static Producto masCaro(Producto[] carrito) {
-        // TODO: recorra guardando el Producto con mayor precioFinal() visto hasta ahora
-        return null;
+        //public void setPorcentajeDescuento(double pct) {
+    Producto max = carrito[0];
+
+    for (Producto p : carrito) {
+        if (p.precioFinal() > max.precioFinal()) {
+            max = p;
+        }
     }
+
+    return max;
+}
 
     /**
      * TAREA 2: retornar el producto con el menor precioFinal() del carrito.
      * Misma estructura que masCaro, pero busca el mínimo.
      */
     public static Producto masBarato(Producto[] carrito) {
-        // TODO: misma lógica que masCaro, condición invertida
-        return null;
+    Producto min = carrito[0];
+
+    for (Producto p : carrito) {
+        if (p.precioFinal() < min.precioFinal()) {
+            min = p;
+        }
     }
+
+    return min;
+}
 
     /**
      * TAREA 3: sumar los descuentos de todos los productos Descontable del carrito.
@@ -45,8 +60,17 @@ public class Mercado {
      * cada clase que implementa la interface define de forma diferente.
      */
     public static double totalDescuentos(Producto[] carrito) {
-        // TODO: si p instanceof Descontable → cast → sumar aplicarDescuento()
-        //   Pista: Descontable d = (Descontable) p;
-        return 0;
+       double total = 0;
+
+    for (Producto p : carrito) {
+        if (p instanceof Descontable) {
+            Descontable d = (Descontable) p;
+            total += d.aplicarDescuento();
+        }
     }
+
+    return total;
 }
+    //commit mercado 2026
+}
+// listo clase mercado metodos polimorficos
